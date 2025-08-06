@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Activity Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Daily Activity Tracker</h1>
+        <nav>
+            <button id="theme-toggle">
+                <i class="fas fa-moon"></i> <span>Dark Mode</span>
+            </button>
+        </nav>
+    </header>
+    <main>
+        <section class="add-activity-section">
+            <h2>Add New Activity</h2>
+            <form id="add-activity-form">
+                <input type="text" id="new-activity-name" placeholder="Activity Name" required>
+                <select id="new-activity-type">
+                    <option value="boolean">Yes/No</option>
+                    <option value="quantity">Quantity</option>
+                </select>
+                <select id="new-activity-streak-type">
+                    <option value="count-if-done">Count if Done</option>
+                    <option value="count-if-not-done">Count if Not Done</option>
+                </select>
+                <button type="submit">
+                    <i class="fas fa-plus-circle"></i> Add Activity
+                </button>
+            </form>
+        </section>
+
+        <hr>
+
+        <section class="daily-tracker-section">
+            <h2 id="today-date-display">Today's Activities</h2>
+            <div id="activity-list">
+                <!-- Daily activity cards will be dynamically inserted here by JavaScript -->
+            </div>
+        </section>
+
+        <hr>
+
+        <section class="streak-section">
+            <h2>Streaks</h2>
+            <div id="streak-list">
+                <!-- Streak cards will be dynamically inserted here by JavaScript -->
+            </div>
+        </section>
+
+        <hr>
+
+        <section class="history-section">
+            <h2>Activity History</h2>
+            <div id="activity-history">
+                <!-- Historical activity logs will be dynamically inserted here by JavaScript -->
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
