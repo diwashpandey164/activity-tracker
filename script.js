@@ -43,6 +43,8 @@ const saveActivities = () => {
  * Renders all sections of the UI based on the current data.
  */
 const renderAll = () => {
+   // Set today's date
+   todayDateSpan.textContent = new Date().toLocaleDateString();
    renderActivitiesList();
    renderTodaysActivities();
    renderStreaks();
@@ -59,12 +61,23 @@ const getTodayDate = () => {
    return new Date().toISOString().split("T")[0];
 };
 
+/**
+ * Checks if a new day has started and refreshes the UI if so.
+ */
+const checkIfNewDay = () => {
+   const today = getTodayDate();
+   const lastRenderDate = localStorage.getItem("lastRenderDate");
+   if (today !== lastRenderDate) {
+      // It's a new day, so we refresh the UI and save the new date
+      localStorage.setItem("lastRenderDate", today);
+      renderAll();
+      console.log("New day detected, UI refreshed.");
+   }
+};
+
 // --- Initial Setup and Event Listeners ---
 
 document.addEventListener("DOMContentLoaded", () => {
-   // Set today's date
-   todayDateSpan.textContent = new Date().toLocaleDateString();
-
    // Load and apply theme from local storage
    const currentTheme = localStorage.getItem("theme");
    if (currentTheme === "dark") {
@@ -75,6 +88,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
    // Render the UI initially
    renderAll();
+
+   // Set up an interval to check for a new day every 5 minutes (300,000 ms)
+   // This is a lightweight way to keep the UI updated if the user leaves the page open
+   setInterval(checkIfNewDay, 300000);
 });
 
 // Theme toggle button
